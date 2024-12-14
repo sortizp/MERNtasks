@@ -1,49 +1,3 @@
-// Assignment 5.5
-// Task 3 - Updating the Number of Times a Book Has Been Borrowed
-let myLibrary = [];
-function createBook(title, author) {
-    const book = {
-        title,
-        author
-    };
-    return book;
-}
-
-function addBook(library, title, author) {
-	const newBook = createBook(title, author);
-	library.push(newBook);
-}
-
-addBook(myLibrary, "1984", "George Orwell");
-addBook(myLibrary, "Brave New World", "Aldous Huxley");
-addBook(myLibrary, "Thinking Fast and Slow", "Daniel Kahnemann");
-addBook(myLibrary, "To Kill a Mockingbird", "Harper Lee");
-
-// Updates the number of times a book with the given title has been borrowed in a library.
-function updateBorrowCount(library, bookTitle) {
-	// Finding the book in the library
-	const book = library.find((b) => b.title === bookTitle);
-
-	// If the book isn't found, log the message and return
-	if(!book) {
-		// Log a message that says "Book not found"
-		 console.log("Book not found.");
-		 return;
-	} else {
-
-		// Task: Check if the book has a 'borrowed' property. If not, add it and set it to 1.
-		// If it does, increment its value by 1.
-		if(!book.hasOwnProperty('borrowed')) {
-			book.borrowed = 1;
-		}else{
-			book.borrowed += 1;
-		}
-	}
-}
-// Test the function by updating borrow count of a book
-updateBorrowCount(myLibrary, "Brave New World");
-console.log(myLibrary);
-
 // *** Assignment 5.1
 // Task 1 
 // Function to generate random temperature data for a city
@@ -214,3 +168,115 @@ function compareCityTemperatures(analyzedData) {
     cityLowestAvg: findCityWithLowestAverage(analyzedData),
   };
 }
+
+// Assignment 5.2
+function addStudent(students, id, name, age, grade) {
+  const newStudent = {
+      id: id,
+      name: name,
+      age: age,
+      grade: grade
+  }
+  students.push(newStudent)
+}
+
+
+function removeStudent(students,order){
+if(order == "first") {
+  order = students.shift()
+}else if(order == "last") {
+  order = students.pop()
+}else{
+  order = "The order is invalid"
+}
+return order
+}
+
+function removeStudentByName (students, studentName) {
+
+let studentIndex = -1;
+
+for(let i = 0; i < students.length; i++) {
+  if(students[i].name === studentName) {
+    studentIndex = i;
+    break;
+  }
+}
+
+if(studentIndex === -1) {
+  return `No student found with that name - ${studentName}.`;
+}
+
+let removedStudent = students.splice(studentIndex, 1);
+
+return removedStudent;
+
+}
+
+function reorderStudent (students, studentName, newIndex) {
+
+if (newIndex >= students.length) {
+  return `${newIndex} is out of the limits of the array.`;
+}
+
+if(students[newIndex] && students[newIndex].name === studentName) {
+  return `The student with the name "${studentName}" is already at index ${newIndex}.`;
+} 
+
+let studentToReorder = null;
+
+for(let i = 0; i < students.length; i++) {
+  
+  if(students[i].name === studentName) {
+    studentToReorder = students[i];
+    students.splice(i, 1);
+    break;
+  }
+}
+}
+
+// Assignment 5.5
+// Task 3 - Updating the Number of Times a Book Has Been Borrowed
+let myLibrary = [];
+function createBook(title, author) {
+    const book = {
+        title,
+        author
+    };
+    return book;
+}
+
+function addBook(library, title, author) {
+	const newBook = createBook(title, author);
+	library.push(newBook);
+}
+
+addBook(myLibrary, "1984", "George Orwell");
+addBook(myLibrary, "Brave New World", "Aldous Huxley");
+addBook(myLibrary, "Thinking Fast and Slow", "Daniel Kahnemann");
+addBook(myLibrary, "To Kill a Mockingbird", "Harper Lee");
+
+// Updates the number of times a book with the given title has been borrowed in a library.
+function updateBorrowCount(library, bookTitle) {
+	// Finding the book in the library
+	const book = library.find((b) => b.title === bookTitle);
+
+	// If the book isn't found, log the message and return
+	if(!book) {
+		// Log a message that says "Book not found"
+		 console.log("Book not found.");
+		 return;
+	} else {
+
+		// Task: Check if the book has a 'borrowed' property. If not, add it and set it to 1.
+		// If it does, increment its value by 1.
+		if(!book.hasOwnProperty('borrowed')) {
+			book.borrowed = 1;
+		}else{
+			book.borrowed += 1;
+		}
+	}
+}
+// Test the function by updating borrow count of a book
+updateBorrowCount(myLibrary, "Brave New World");
+console.log(myLibrary);
