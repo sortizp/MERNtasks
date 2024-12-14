@@ -316,8 +316,11 @@ function updateBorrowCount(library, bookTitle) {
 	}
 }
 // Test the function by updating borrow count of a book
-//updateBorrowCount(myLibrary, "1984");
-//console.log(myLibrary);
+// updateBorrowCount(myLibrary, "1984");
+// updateBorrowCount(myLibrary, "1984");
+// updateBorrowCount(myLibrary, "1983");
+// console.log(myLibrary);
+
 // Task 4
 function acceptBook (book, library, existingBookAction, newBookAction) {
 
@@ -446,7 +449,7 @@ function findDayWithLowestTemperature(temperatureData) {
   return dayWithLowestTemp;
 }
 
-
+// Task 4
 function getHighestAndLowestDays(cityData) {
   // Loop over city data
   // Each item of 'cityData' array is an object that has two properties:
@@ -472,4 +475,71 @@ const cities2 = [
   { city: "Chicago", temperatureData: [10, 15, 8, 5, 12, 20, 14] }
 ];
 
-//getHighestAndLowestDays(cities2);
+getHighestAndLowestDays(cities2);
+
+// Task 2
+function calculateAverage(temperatures) {
+  const total = temperatures.reduce((sum, temp) => sum + temp, 0); // Sum up all temperatures
+  return total / temperatures.length; // Calculate average
+}
+
+function calculateMin(temperatures) {
+  return Math.min(...temperatures); // Find minimum temperature
+}
+
+function calculateMax(temperatures) {
+  return Math.max(...temperatures); // Find maximum temperature
+}
+
+function analyzeCityTemperatures(cityData) {
+  // Array to hold the analysis data for each city
+  const analyzedData = [];
+
+  cityData.forEach((city) => {
+    const averageTemperature = calculateAverage(city.temperatureData);
+    const minTemperature = calculateMin(city.temperatureData);
+    const maxTemperature = calculateMax(city.temperatureData);
+
+    // Push the analysis for the current city into the array
+    analyzedData.push({
+      city: city.city, // City name
+      averageTemperature: averageTemperature,
+      minTemperature: minTemperature,
+      maxTemperature: maxTemperature,
+    });
+  });
+
+  return analyzedData;
+}
+
+
+// TASK 3
+// Function to find the city with the highest average temperature
+function findCityWithHighestAverage(analyzedData) {
+  let highestCity = analyzedData[0]; // Assume the first city has the highest average
+  for (const city of analyzedData) {
+    if (city.averageTemperature > highestCity.averageTemperature) {
+      highestCity = city; // Update highestCity if a higher average is found
+    }
+  }
+  return highestCity.city; // Return the name of the city
+}
+
+// Function to find the city with the lowest average temperature
+function findCityWithLowestAverage(analyzedData) {
+  let lowestCity = analyzedData[0]; // Assume the first city has the lowest average
+  for (const city of analyzedData) {
+    if (city.averageTemperature < lowestCity.averageTemperature) {
+      lowestCity = city; // Update lowestCity if a lower average is found
+    }
+  }
+  return lowestCity.city; // Return the name of the city
+}
+
+// Function to compare city temperatures and return the results
+function compareCityTemperatures(analyzedData) {
+  return {
+    cityHighestAvg: findCityWithHighestAverage(analyzedData),
+    cityLowestAvg: findCityWithLowestAverage(analyzedData),
+  };
+}
