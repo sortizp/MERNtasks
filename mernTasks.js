@@ -44,7 +44,7 @@ function updateBorrowCount(library, bookTitle) {
 updateBorrowCount(myLibrary, "Brave New World");
 console.log(myLibrary);
 
-/ *** Assignment 5.1
+// *** Assignment 5.1
 // Task 1 
 // Function to generate random temperature data for a city
 function generateRandomTemperatureData(city, minTemp, maxTemp) {
