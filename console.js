@@ -328,9 +328,9 @@ function acceptBook (book, library, existingBookAction, newBookAction) {
   const foundBookAuthor = library.find((item) => item.author === book.author);
 
   if(foundBookTitle && foundBookAuthor) {
-    existingBookAction(library, book.title);
+    existingBookAction(library, book.title); // updateBorrowCount function
   } else if(!foundBookTitle && !foundBookAuthor){
-    newBookAction(library, book.title, book.author);
+    newBookAction(library, book.title, book.author); // addBook function
   }
 }
 
